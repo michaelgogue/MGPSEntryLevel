@@ -1,0 +1,72 @@
+get-process | more
+get-process | get-member | more
+get-command | more
+get-process | select-object -property id,name
+get-service | more
+get-service | select-object -property name
+
+get-help get-service -showwindow
+get-help stop-process -parameter *
+get-help stop-process -examples
+
+get-childitem
+get-childitem | where-object apple -match 'a$'
+show-command
+
+write-host "Hello" 
+get-command *message*
+get-command -verb write
+get-help write-host -showwindow
+update-help
+get-timezone -listavailable
+get-help get-timezone -showwindow
+
+get-help select-object -examples
+
+
+# FORMAT-LIST and FORMAT-TABLE
+Get-Date
+get-date | Get-Member
+Get-Date | Format-List
+Get-Process | Format-List
+Get-Process | Format-Table
+Get-Process | Format-list -Property name, id
+Get-process | Format-Table -property name, id
+
+
+
+Get-Command *timezone*
+Get-TimeZone
+Get-Help get-timezone -ShowWindow
+Get-TimeZone -listavailable
+
+get-timezone | Get-Member
+
+Get-Random
+find-module -tag vscodeandgit 
+
+get-command *volume*
+get-volume
+
+#PIPING AND SORTING
+get-command *sort*
+Get-Process | Sort-Object id
+Get-Volume | Sort-Object size
+
+#GET A SPECIFIC PROCESS THAT IS RUNNING AND PIPE INTO A SEPERATE COMMAND
+Get-Process -NAME notepad
+Get-Process -NAME notepad | Stop-Process
+#PROCESS "PARAMETER (I.E -NAME = NOTEPAD)" MUST ACCECPT PIPELINE INPUT TO USE WITH A PIPELINE (REVIEW IN GET-HELP)
+
+#TO SEE ALL AVAILABLE PROPERTIES of a RUNNING Process (i.e notepad),
+    #ENSURE TO PIPE THE PARAMETER NAME (i.e notepad) TO "FORMAT-LIST *" "
+Get-Process -name notepad | Format-List *
+Get-Process -name notepad | Select-Object name,id,cpu,responding
+
+#WHERE OBJECT
+Get-Process | Where-Object {$_.CPU -gt 50}
+
+Get-Process | Select-Object -
+Get-Process | Get-Member
+Get-Process | format-table -property name,cpu,notresponding
+get-help where-object -ShowWindow
